@@ -1,13 +1,49 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit, OnChanges, SimpleChanges, DoCheck, OnDestroy, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'lifecyle-hooks';
+export class AppComponent implements OnInit, OnChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
+  title = 'lifecycle-hooks';
+  message = "welcome to our World";
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("ngOnChanges:", changes);
+  }
+
+  ngOnInit(): void {
+    console.log("ngOnInit of app.component");
+    setInterval(() => {
+    }, 2000);
+  }
+
+  ngDoCheck(): void {
+    console.log("from ngDoCheck");
+  }
+
+  ngAfterContentInit(): void {
+    console.log("ngAfterContentInit");
+  }
+
+  ngAfterContentChecked(): void {
+    console.log("ngAfterContentChecked");
+  }
+
+  ngAfterViewInit(): void {
+    console.log("ngAfterViewInit");
+  }
+
+  ngAfterViewChecked(): void {
+    console.log("ngAfterViewChecked");
+  }
+
+  changeMessage(): void {
+    this.message = "hello ....";
+  }
+
+  ngOnDestroy(): void {
+    console.log("Destroying");
+  }
 }
